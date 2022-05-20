@@ -1,8 +1,17 @@
 <template>
   <main class="bg-slate-200 flex justify-center font-sans">
-    <article class="w-3/5 h-screen p-5 flex justify-center">
-      <div class="w-full p-8 bg-white rounded-lg">
-        <h3 class="text-5xl text-center p-5 font-semibold font-sans">
+    <article class="lg:w-4/5 md:w-full w-full h-full p-5 flex justify-center">
+      <div class="w-full h-full p-8 bg-white rounded-lg">
+        <h3
+          class="
+            md:text-5xl
+            lg:text-5xl
+            xl:text-5xl
+            text-2xl text-center
+            p-5
+            font-semibold font-sans
+          "
+        >
           Are you looking for a career rejuvenation ?
         </h3>
         <p class="font-Poppins p-2 text-center">
@@ -19,77 +28,53 @@
             we live and work.
           </p>
         </div>
-        <div class="p-3 m-2 text-3xl text-center font-Inter">
-          <h3 class="text-5xl font-mono">Get Access to Free resources</h3>
+        <div
+          class="
+            p-3
+            m-2
+            md:text-3xl
+            lg:text-3xl
+            xl:text-3xl
+            text-base text-center
+            font-Inter
+          "
+        >
+          <h3
+            class="
+              md:text-5xl
+              lg:text-5xl
+              xl:text-5xl
+              text-xl
+              font-mono
+              text-green-400
+            "
+          >
+            Get Access to Free resources!
+          </h3>
           <h4 class="text-4xl mt-4">Human Resources</h4>
           <div class="m-3 justify-center flex flex-wrap">
             <div
               class="
-                w-2/5
+                md:w-full
+                lg:w-2/5
+                w-full
                 m-2
                 h-40
                 shadow-lg
-                hover:-translate-y-2
+                hover:-translate-y-2 hover:border-2 hover:border-sky-700
                 duration-700
                 flex
                 items-center
                 justify-around
                 p-2
+                cursor-default
               "
+              v-for="hr in human_resource"
+              :key="hr.title"
+              @click.stop="takeMeToLink(hr)"
             >
-              <img src="images/survey.svg" alt="survey" class="h-2/3" />
-              <p>PREDICTIVE ANALYTICS SURVEYS</p>
-            </div>
-            <div
-              class="
-                w-2/5
-                m-2
-                h-40
-                shadow-lg
-                hover:-translate-y-2
-                duration-700
-                flex
-                items-center
-                justify-around
-                p-2
-              "
-            >
-              <img src="images/charts.png" alt="chart" class="h-2/3" />
-              <p>CHARTS</p>
-            </div>
-            <div
-              class="
-                w-2/5
-                m-2
-                h-40
-                shadow-lg
-                hover:-translate-y-2
-                duration-700
-                flex
-                items-center
-                justify-around
-                p-2
-              "
-            >
-              <img src="images/kpi.png" alt="kpi" class="h-2/3" />
-              <p>EMPLOYEE KPI</p>
-            </div>
-            <div
-              class="
-                w-2/5
-                m-2
-                h-40
-                shadow-lg
-                hover:-translate-y-2
-                duration-700
-                flex
-                items-center
-                justify-around
-                p-2
-              "
-            >
-              <img src="images/job.png" alt="job" class="h-2/3" />
-              <p>JOBS</p>
+              <img :src="`images/${hr.img}`" :alt="hr.title" class="h-2/3" />
+              <p class="hover:text-sky-600">{{ hr.title }}</p>
             </div>
           </div>
         </div>
@@ -98,69 +83,128 @@
           <div class="m-3 justify-center flex flex-wrap">
             <div
               class="
-                w-2/5
+                md:w-full
+                lg:w-2/5
+                w-full
                 m-2
                 h-40
                 shadow-lg
-                hover:-translate-y-2
+                hover:-translate-y-2 hover:border
                 duration-700
                 flex
                 items-center
                 justify-around
                 p-2
+                cursor-default
               "
               v-for="book in books"
               :key="book.title"
+              @click.stop="signUp()"
             >
-              <img :src="`images/${book.img}.png`" :alt="book.title" class="h-2/3" />
+              <a
+                @click.stop="signUp()"
+                :href="`books/${book.name}`"
+                target="_blank"
+              >
+                <img
+                  :src="`images/${book.img}`"
+                  :alt="book.title"
+                  class="w-24 hover:scale-150 transition-all duration-1000"
+                />
+              </a>
               <div class="flex-col">
                 <div>
-                  <p>{{book.title}}</p>
+                  <p class="hover:text-sky-600">
+                    <a :href="`books/${book.name}`" target="_blank">{{
+                      book.title
+                    }}</a>
+                  </p>
                 </div>
                 <div class="flex">
-                  <p class="text-emerald-700">{{book.pages}} Pages:</p>
-                  <p class="text-emerald-700">Size: {{book.size}}</p>
+                  <p class="text-emerald-700">{{ book.pages }} Pages:</p>
+                  <p class="text-emerald-700">Size: {{ book.size }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        
       </div>
     </article>
+    <sign-up v-if="showModal"></sign-up>
   </main>
 </template>
 
 <script>
+import SignUp from "../components/SignUp.vue";
 export default {
+  components: { SignUp },
   data() {
     return {
+      showModal: true,
       books: [
         {
           img: "LIP_brochure.png",
           title: "Location Intelligence Platform",
           pages: "10",
           size: "1MB",
+          name: "LIP Brochure.pdf",
         },
         {
           img: "4IR_plan_brochure.png",
           title: "4IR PLAN",
           pages: "6",
           size: "4MB",
+          name: "4IR plan brochure.pdf",
         },
         {
           img: "interviewer_framework.png",
-          title: "Data Scientist Interviewer Framework",
+          title: "Interviewer Framework",
           pages: "6",
           size: "3MB",
+          name: "Data Scientist Interviewer Framework.pdf",
         },
         {
           img: "data_usecase_handbook.png",
           title: "DATA USECASE HANDBOOK",
           pages: "28",
           size: "14MB",
+          name: "DATA USECASE HANDBOOK HANDBOOK.pdf",
+        },
+      ],
+      human_resource: [
+        {
+          title: "PREDICTIVE ANALYTICS SURVEYS",
+          img: "survey.svg",
+          link: "https://surveys.predictiveanalytics.africa/",
+        },
+        {
+          title: "CHARTS",
+          img: "charts.png",
+          link: "https://charts.predictiveanalytics.co.ke/accounts/login?returnUrl=%2Fcharts",
+        },
+        {
+          title: "EMPLOYEE KPI",
+          img: "kpi.png",
+          link: "https://kpis.predictiveanalytics.co.ke/",
+        },
+        {
+          title: "JOBS",
+          img: "job.png",
+          link: "https://jobs.predictiveanalytics.co.ke",
         },
       ],
     };
+  },
+  methods: {
+    takeMeToLink(hr) {
+      this.signUp();
+      window.location.href = hr.link;
+    },
+    signUp() {
+      this.showModal = true;
+    },
   },
 };
 </script>

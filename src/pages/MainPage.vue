@@ -1,7 +1,7 @@
 <template>
   <main class="bg-slate-200 flex justify-center font-sans">
-    <article class="lg:w-4/5 md:w-full w-full h-full p-5 flex justify-center">
-      <div class="w-full h-full p-8 bg-white rounded-lg">
+    <article class="lg:w-4/5 md:w-full w-full h-full px-5 flex justify-center">
+      <div class="w-full h-full p-8 bg-white ">
         <h3
           class="
             md:text-5xl
@@ -9,6 +9,8 @@
             xl:text-5xl
             text-2xl text-center
             p-5
+            xl:py-5
+            xl:px-0
             font-semibold font-sans
           "
         >
@@ -128,8 +130,6 @@
             </div>
           </div>
         </div>
-
-        
       </div>
     </article>
     <sign-up v-if="showModal"></sign-up>
@@ -142,7 +142,7 @@ export default {
   components: { SignUp },
   data() {
     return {
-      showModal: true,
+      showModal: false,
       books: [
         {
           img: "LIP_brochure.png",

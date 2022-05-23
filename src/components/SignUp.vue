@@ -1,21 +1,10 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <div
     class="relative z-10"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
   >
-    <!--
-    Background backdrop, show/hide based on modal state.
-
-    Entering: "ease-out duration-300"
-      From: "opacity-0"
-      To: "opacity-100"
-    Leaving: "ease-in duration-200"
-      From: "opacity-100"
-      To: "opacity-0"
-  -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
     ></div>
@@ -33,16 +22,6 @@
           sm:p-0
         "
       >
-        <!--
-        Modal panel, show/hide based on modal state.
-
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
         <div
           class="
             relative
@@ -63,10 +42,10 @@
                   class="text-lg leading-6 font-medium text-gray-900"
                   id="modal-title"
                 >
-                  One last step.
+                  One Last Step.
                 </h3>
                 <div class="mt-2 w-full">
-                  <div class="w-full mb-2">
+                  <form class="w-full mb-2" ons>
                     <div class="w-full flex items-center mb-2">
                       <span
                         class="
@@ -79,6 +58,7 @@
                         "
                       ></span>
                       <input
+                        v-model="userDetails.fullName"
                         type="text"
                         placeholder="Full Name"
                         class="
@@ -106,6 +86,7 @@
                         "
                       ></span>
                       <input
+                        v-model="userDetails.organization"
                         type="text"
                         placeholder="Organization"
                         class="
@@ -133,6 +114,7 @@
                         "
                       ></span>
                       <input
+                        v-model="userDetails.email"
                         type="email"
                         placeholder="Email"
                         class="
@@ -160,6 +142,7 @@
                         "
                       ></span>
                       <input
+                        v-model="userDetails.password"
                         type="password"
                         placeholder="Password"
                         class="
@@ -175,14 +158,25 @@
                         "
                       />
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+
+          <div v-if="errors.length" class="w-full m-3">
+            <p
+              class="text-red-900 text-center bg-red-400 my-2"
+              v-for="error in errors"
+              :key="error"
+            >
+              {{ error }}
+            </p>
+          </div>
           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="button"
+              @click="submitDetails()"
               class="
                 w-full
                 inline-flex
@@ -233,9 +227,6 @@
               Already Registered ?
             </button>
           </div>
-          <div v-if="error" class="w-full">
-            <p class="text-red-600">{{ error }}</p>
-          </div>
         </div>
       </div>
     </div>
@@ -243,11 +234,63 @@
 </template>
 
 <script>
+import { register } from "../helpers/auth";
+
 export default {
   data() {
     return {
-      error: "",
+      errors: [],
+      formIsValid: false,
+      reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+
+      userDetails: {
+        fullName: "",
+        organization: "",
+        email: "",
+        password: "",
+      },
     };
+  },
+  methods: {
+    async submitDetails() {
+      this.checkValidity();
+
+      if (!this.formIsValid) return;
+
+      const res = await register(this.userDetails);
+      if (res.user) {
+        this.$emit("redirect-url", this.currentFilters);
+      } else if (res.error) {
+       
+        this.errors = [];
+
+        return this.errors.push(res.error);
+      }
+    },
+
+    checkValidity() {
+      this.errors = [];
+
+      if (!this.userDetails.fullName) {
+        this.formIsValid = false;
+        return this.errors.push("Please Fill in your Full Name!");
+      }
+
+      if (!this.userDetails.email) {
+        this.formIsValid = false;
+        return this.errors.push("Please Fill in the email!");
+      } else if (!this.reg.test(this.userDetails.email)) {
+        this.formIsValid = false;
+        this.errors.push("Please Fill in a valid email!");
+      }
+
+      if (!this.userDetails.password) {
+        this.formIsValid = false;
+        return this.errors.push("Please create your password!");
+      }
+
+      this.formIsValid = true;
+    },
   },
 };
 </script>

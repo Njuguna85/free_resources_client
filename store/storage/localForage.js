@@ -2,14 +2,13 @@ import localForage from "localforage";
 
 localForage.config({
   name: "freeresources",
-  driver: [localForage.INDEXEDDB, localForage.WEBSQL, localForage.LOCALSTORAGE],
+  driver: [localForage.LOCALSTORAGE],
   storeName: "freeresources",
 });
 
 async function savetoLF(key, item) {
   try {
-    let value = await localForage.setItem(key, item);
-    return value;
+    return await localForage.setItem(key, item);
   } catch (error) {
     return error;
   }
@@ -17,8 +16,7 @@ async function savetoLF(key, item) {
 
 async function getFromLF(key) {
   try {
-    let value = await localForage.getItem(key);
-    return value;
+    return await localForage.getItem(key);
   } catch (error) {
     return error;
   }

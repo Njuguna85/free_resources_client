@@ -1,7 +1,7 @@
 <template>
   <main class="bg-slate-200 flex justify-center font-sans">
     <article class="lg:w-4/5 md:w-full w-full h-full px-5 flex justify-center">
-      <div class="w-full h-full p-8 bg-white ">
+      <div class="w-full h-full p-8 bg-white">
         <h3
           class="
             md:text-5xl
@@ -9,8 +9,7 @@
             xl:text-5xl
             text-2xl text-center
             p-5
-            xl:py-5
-            xl:px-0
+            xl:py-5 xl:px-0
             font-semibold font-sans
           "
         >
@@ -68,7 +67,7 @@
                 flex
                 items-center
                 justify-around
-                p-2
+                p-5
                 cursor-default
               "
               v-for="hr in human_resource"
@@ -76,7 +75,7 @@
               @click.stop="takeMeToLink(hr)"
             >
               <img :src="`images/${hr.img}`" :alt="hr.title" class="h-2/3" />
-              <p class="hover:text-sky-600">{{ hr.title }}</p>
+              <p class="hover:text-sky-600 md:text-2xl">{{ hr.title }}</p>
             </div>
           </div>
         </div>
@@ -132,7 +131,7 @@
         </div>
       </div>
     </article>
-    <sign-up v-if="showModal"></sign-up>
+    <sign-up v-if="showModal" @redirect-url="continueToUrl = true"></sign-up>
   </main>
 </template>
 
@@ -195,15 +194,25 @@ export default {
           link: "https://jobs.predictiveanalytics.co.ke",
         },
       ],
+      continueToUrl: false,
+      currentRedirectLink: null,
     };
   },
   methods: {
     takeMeToLink(hr) {
       this.signUp();
-      window.location.href = hr.link;
+      this.currentRedirectLink = hr.link;
     },
     signUp() {
       this.showModal = true;
+    },
+  },
+  watch: {
+    continueToUrl(status) {
+      if (status) {
+        this.showModal = false;
+        window.location.href = this.currentRedirectLink;
+      }
     },
   },
 };

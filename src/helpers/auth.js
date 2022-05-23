@@ -83,10 +83,8 @@ const fetchCurrentUser = async () => {
 
 async function tryLogin() {
   try {
-    const user = await getFromLF("user");
-    const token = await getToken();
-
-    if (user && token) return { user, token };
+    const token = await getFromLF("token");
+    if (token) return token;
   } catch (error) {
     return "Could not authenticate User";
   }

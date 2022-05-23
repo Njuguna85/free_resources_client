@@ -136,6 +136,8 @@
 </template>
 
 <script>
+import { tryLogin } from "../helpers/auth";
+
 import SignUp from "../components/SignUp.vue";
 export default {
   components: { SignUp },
@@ -203,7 +205,12 @@ export default {
       this.signUp();
       this.currentRedirectLink = hr.link;
     },
-    signUp() {
+    async signUp() {
+      const { token } = await tryLogin();
+    
+      if (token) {
+        return (this.continueToUrl = true);
+      }
       this.showModal = true;
     },
   },

@@ -210,12 +210,15 @@ export default {
     },
 
     async signUp() {
-      const { token } = await tryLogin();
+      // const { token } = await tryLogin();
 
-      if (token) {
+      // if (token) {
+      //   return (this.continueToUrl = true);
+      // }
+      // this.showModal = true;
+
         return (this.continueToUrl = true);
-      }
-      this.showModal = true;
+
     },
 
     takeMeToPdf() {

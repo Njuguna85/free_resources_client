@@ -261,7 +261,6 @@ export default {
       if (res.user) {
         this.$emit("redirect-url", this.currentFilters);
       } else if (res.error) {
-       
         this.errors = [];
 
         return this.errors.push(res.error);

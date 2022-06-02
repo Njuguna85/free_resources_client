@@ -100,10 +100,10 @@
               "
               v-for="book in books"
               :key="book.title"
-              @click.stop="signUp()"
+              @click.stop="takeMeToPdf(book.name)"
             >
               <a
-                @click.stop="signUp()"
+                @click.stop="takeMeToPdf(book.name)"
                 :href="`books/${book.name}`"
                 target="_blank"
               >
@@ -116,9 +116,12 @@
               <div class="flex-col">
                 <div>
                   <p class="hover:text-sky-600">
-                    <a :href="`books/${book.name}`" target="_blank">{{
-                      book.title
-                    }}</a>
+                    <a
+                      @click.stop="takeMeToPdf(book.name)"
+                      :href="`books/${book.name}`"
+                      target="_blank"
+                      >{{ book.title }}</a
+                    >
                   </p>
                 </div>
                 <div class="flex">
@@ -205,13 +208,18 @@ export default {
       this.signUp();
       this.currentRedirectLink = hr.link;
     },
+
     async signUp() {
       const { token } = await tryLogin();
-    
+
       if (token) {
         return (this.continueToUrl = true);
       }
       this.showModal = true;
+    },
+
+    takeMeToPdf() {
+      // this.signUp();
     },
   },
   watch: {

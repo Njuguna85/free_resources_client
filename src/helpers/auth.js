@@ -34,6 +34,7 @@ const login = async (payLoad) => {
 
     return { user };
   } catch (err) {
+    console.log(err);
     const error =
       err.response.data.error ||
       "An error occurred Login in.Please try again or Contact the System Admin ";
@@ -46,24 +47,15 @@ const register = async (payLoad) => {
     const response = await axios.post(`${baseUrl}/users`, { payLoad });
     if (response.data.error) return { error: response.data.error.message };
 
-    const { token: tokenData, fullName, email } = response.data.data.data;
+    const { token: tokenData } = response.data.data.data;
 
     const { token, exp } = tokenData;
-
-    const user = {
-      fullName: fullName,
-      email: email,
-    };
 
     await removeFromLF("token");
 
     await savetoLF("token", { token, exp });
 
-    await removeFromLF("user");
-
-    await savetoLF("user", user);
-
-    return { user };
+    return { token };
   } catch (err) {
     return {
       error:

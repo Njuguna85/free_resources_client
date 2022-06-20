@@ -15,12 +15,12 @@
         >
           Are you looking for a career rejuvenation ?
         </h3>
-        <p class="font-Poppins p-2 text-center">
+        <p class="font-Poppins p-2 text-center w-5/6 mx-auto">
           Technology is growing very fast. So much so we are not able to catch
           up with emerging issues of the current world.
         </p>
-        <div class="shadow-xl p-4 w-5/6 mx-auto">
-          <p class="font-Open-Sans">
+        <div class="shadow-xl p-5 w-5/6 mx-auto">
+          <p class="font-['Open_Sans']">
             These free resources environment provides scopes such as resources,
             documentaries and glossary items to help you be up-to-date with the
             current and developing environment in which disruptive technologies
@@ -102,11 +102,7 @@
               :key="book.title"
               @click.stop="takeMeToPdf(book.name)"
             >
-              <a
-                @click.stop="takeMeToPdf(book.name)"
-                :href="`books/${book.name}`"
-                target="_blank"
-              >
+              <a @click.stop="takeMeToPdf(book.name)">
                 <img
                   :src="`images/${book.img}`"
                   :alt="book.title"
@@ -116,12 +112,7 @@
               <div class="flex-col">
                 <div>
                   <p class="hover:text-sky-600">
-                    <a
-                      @click.stop="takeMeToPdf(book.name)"
-                      :href="`books/${book.name}`"
-                      target="_blank"
-                      >{{ book.title }}</a
-                    >
+                    <a @click.stop="takeMeToPdf(book.name)">{{ book.title }}</a>
                   </p>
                 </div>
                 <div class="flex">
@@ -134,7 +125,13 @@
         </div>
       </div>
     </article>
-    <sign-up v-if="showModal" @redirect-url="continueToUrl = true"></sign-up>
+    <transition name="tray">
+      <sign-up
+        v-if="showModal"
+        @close-modal="showModal = false"
+        @redirect-url="continueToUrl = true"
+      ></sign-up>
+    </transition>
   </main>
 </template>
 
@@ -201,35 +198,44 @@ export default {
       ],
       continueToUrl: false,
       currentRedirectLink: null,
+      linkType: "",
     };
   },
   methods: {
-    takeMeToLink(hr) {
-      this.signUp();
+    async takeMeToLink(hr) {
       this.currentRedirectLink = hr.link;
+      await this.signUp();
     },
 
     async signUp() {
-      // const { token } = await tryLogin();
-
-      // if (token) {
-      //   return (this.continueToUrl = true);
-      // }
-      // this.showModal = true;
-
+      const token = await tryLogin();
+      if (token) {
         return (this.continueToUrl = true);
-
+      }
+      this.showModal = true;
     },
 
-    takeMeToPdf() {
-      // this.signUp();
+    async takeMeToPdf(bookName) {
+      this.linkType = "pdf";
+      this.currentRedirectLink = bookName;
+      await this.signUp();
     },
   },
   watch: {
     continueToUrl(status) {
       if (status) {
-        this.showModal = false;
-        window.location.href = this.currentRedirectLink;
+        console.log(this.currentRedirectLink);
+        console.log(this.linkType);
+        if (this.linkType === "pdf") {
+          this.showModal = false;
+
+          window.location.href = encodeURI(
+            `${window.location.origin}/books/${this.currentRedirectLink}`
+          );
+        } else {
+          this.showModal = false;
+          window.location.href = this.currentRedirectLink;
+        }
       }
     },
   },
@@ -237,4 +243,18 @@ export default {
 </script>
 
 <style>
+.tray-enter,
+.tray-leave-to {
+  opacity: 0;
+}
+
+.tray-leave,
+.tray-enter-to {
+  opacity: 1;
+}
+
+.tray-enter-active,
+.tray-leave-active {
+  transition: opacity 1000ms;
+}
 </style>

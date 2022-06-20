@@ -6,7 +6,7 @@
     aria-modal="true"
   >
     <div
-      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+      class="fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
     ></div>
 
     <div class="fixed z-10 inset-0 overflow-y-auto">
@@ -35,15 +35,55 @@
             sm:my-8 sm:max-w-lg sm:w-full
           "
         >
+          <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 94.926 94.926"
+            class="w-4 m-2 absolute right-0 hover:w-5 transition-all"
+            xml:space="preserve"
+            @click="closeModal"
+          >
+            <g>
+              <path
+                d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0
+		c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096
+		c-0.827,0.827-0.827,2.167,0,2.994l38.374,38.373L0.622,85.836c-0.827,0.827-0.827,2.167,0,2.994l5.473,5.476
+		c0.397,0.396,0.936,0.62,1.498,0.62s1.1-0.224,1.497-0.62l38.374-38.374l38.374,38.374c0.397,0.396,0.937,0.62,1.498,0.62
+		s1.101-0.224,1.498-0.62l5.473-5.476c0.826-0.827,0.826-2.167,0-2.994L55.931,47.463z"
+              />
+            </g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+          </svg>
+
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3
-                  class="text-lg leading-6 font-medium text-gray-900"
+                  class="text-lg leading-6 font-medium mb-6 text-gray-900"
                   id="modal-title"
                 >
                   One Last Step.
                 </h3>
+                <p class="mb-4 font-['Open_Sans']">
+                  Access to these resources is free, but we would appreciate it
+                  if you subscribe to our free membership.
+                </p>
                 <div class="mt-2 w-full">
                   <form class="w-full mb-2" ons>
                     <div class="w-full flex items-center mb-2">
@@ -130,34 +170,6 @@
                         "
                       />
                     </div>
-                    <div class="flex items-center mb-2 w-full">
-                      <span
-                        class="
-                          ml-3
-                          fill-current
-                          text-gray-400 text-xs
-                          z-10
-                          fas
-                          fa-user
-                        "
-                      ></span>
-                      <input
-                        v-model="userDetails.password"
-                        type="password"
-                        placeholder="Password"
-                        class="
-                          -mx-6
-                          px-8
-                          w-full
-                          border
-                          rounded
-                          px-3
-                          py-2
-                          text-gray-700
-                          focus:outline-none
-                        "
-                      />
-                    </div>
                   </form>
                 </div>
               </div>
@@ -198,33 +210,7 @@
                 sm:ml-3 sm:w-auto sm:text-sm
               "
             >
-              Register
-            </button>
-            <button
-              type="button"
-              class="
-                mt-3
-                w-full
-                inline-flex
-                justify-center
-                rounded-md
-                border border-gray-300
-                shadow-sm
-                px-4
-                py-2
-                bg-white
-                text-base
-                font-medium
-                text-gray-700
-                hover:bg-gray-50
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-indigo-500
-                sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
-              "
-            >
-              Already Registered ?
+              Read and Subscribe
             </button>
           </div>
         </div>
@@ -247,7 +233,6 @@ export default {
         fullName: "",
         organization: "",
         email: "",
-        password: "",
       },
     };
   },
@@ -258,13 +243,17 @@ export default {
       if (!this.formIsValid) return;
 
       const res = await register(this.userDetails);
-      if (res.user) {
-        this.$emit("redirect-url", this.currentFilters);
+      if (res.token) {
+        this.$emit("redirect-url");
       } else if (res.error) {
         this.errors = [];
 
         return this.errors.push(res.error);
       }
+    },
+
+    closeModal() {
+      this.$emit("close-modal");
     },
 
     checkValidity() {
@@ -273,22 +262,15 @@ export default {
       if (!this.userDetails.fullName) {
         this.formIsValid = false;
         return this.errors.push("Please Fill in your Full Name!");
-      }
-
-      if (!this.userDetails.email) {
+      } else if (!this.userDetails.email) {
         this.formIsValid = false;
         return this.errors.push("Please Fill in the email!");
       } else if (!this.reg.test(this.userDetails.email)) {
         this.formIsValid = false;
         this.errors.push("Please Fill in a valid email!");
+      } else {
+        this.formIsValid = true;
       }
-
-      if (!this.userDetails.password) {
-        this.formIsValid = false;
-        return this.errors.push("Please create your password!");
-      }
-
-      this.formIsValid = true;
     },
   },
 };

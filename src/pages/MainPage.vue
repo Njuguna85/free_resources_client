@@ -155,15 +155,64 @@
         </div>
 
         <div class="p-j3 m-2x text-xl text-center font-Inter">
+          <h4 class="text-4xl mt-4">Our Software</h4>
+
           <div class="h-9 m-3 justify-center flex flex-wrap">
             <a
-              href="https://www.predictiveanalytics.co.ke/blog"
+              href="https://gis.predictiveanalytics.africa"
               class="cursor-pointer text-4xl mt-4"
             >
-              Read Our
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
-                >Blog.</span
+                >Location Intelligence.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://app.abonten.com"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Out of Home Media Marketing.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://ai.predictiveanalytics.africa"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Artificial Intelligence.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://app.predictiveanalytics.co.ke"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Data App.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://charts.predictiveanalytics.co.ke"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Visualizations.</span
               >
             </a>
           </div>
@@ -190,6 +239,19 @@
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
                 >android App.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://www.predictiveanalytics.co.ke/blog"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              Read Our
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Blog.</span
               >
             </a>
           </div>

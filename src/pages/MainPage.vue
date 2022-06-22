@@ -79,6 +79,36 @@
             </div>
           </div>
         </div>
+
+        <div class="p-3 m-2 text-xl text-center font-Inter">
+          <h4 class="text-4xl mt-4">Marketing</h4>
+          <div class="m-3 justify-center flex flex-wrap">
+            <div
+              class="
+                md:w-full
+                lg:w-2/5
+                w-full
+                m-2
+                h-40
+                shadow-lg
+                hover:-translate-y-2 hover:border-2 hover:border-sky-700
+                duration-700
+                flex
+                items-center
+                justify-around
+                p-5
+                cursor-default
+              "
+              v-for="mr in marketing"
+              :key="mr.title"
+              @click.stop="takeMeToLink(mr)"
+            >
+              <img :src="`images/${mr.img}`" :alt="mr.title" class="h-2/3" />
+              <p class="hover:text-sky-600 md:text-2xl">{{ mr.title }}</p>
+            </div>
+          </div>
+        </div>
+
         <div class="p-3 m-2 text-xl text-center font-Inter">
           <h4 class="text-4xl mt-4">Downloads</h4>
           <div class="m-3 justify-center flex flex-wrap">
@@ -121,6 +151,47 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="p-j3 m-2x text-xl text-center font-Inter">
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://www.predictiveanalytics.co.ke/blog"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              Read Our
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >Blog.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://apps.apple.com/us/app/predictive-analytics/id1584977537"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              Download our
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >ios App.</span
+              >
+            </a>
+          </div>
+
+          <div class="h-9 m-3 justify-center flex flex-wrap">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.predictiveanalytics.app&hl=en&gl=US"
+              class="cursor-pointer text-4xl mt-4"
+            >
+              Download Our
+              <span
+                class="text-green-400 hover:border-b-2 hover:border-green-600"
+                >android App.</span
+              >
+            </a>
           </div>
         </div>
       </div>
@@ -194,6 +265,28 @@ export default {
           title: "JOBS",
           img: "job.png",
           link: "https://jobs.predictiveanalytics.co.ke",
+        },
+      ],
+      marketing: [
+        {
+          title: "SALES",
+          img: "sales.svg",
+          link: "https://saleskpis.predictiveanalytics.co.ke/",
+        },
+        {
+          title: "DEMOGRAPHICS",
+          img: "population.svg",
+          link: "https://countrymeters.info/en/World#:~:text=As%20of%201%20January%202022,number%20of%20deaths%20by%2096%2C617%2C035",
+        },
+        {
+          title: "MAGIC SOURCE",
+          img: "magic.svg",
+          link: "https://applymagicsauce.com/demo",
+        },
+        {
+          title: "POPULATION",
+          img: "world_pop.svg",
+          link: "https://www.worldometers.info/world-population/",
         },
       ],
       continueToUrl: false,

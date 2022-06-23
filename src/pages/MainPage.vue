@@ -85,11 +85,10 @@
           class="
             p-3
             m-2
-            text-xl
             md:text-3xl
             lg:text-3xl
             xl:text-3xl
-            text-center
+            text-base text-center
             font-Inter
           "
         >
@@ -115,7 +114,7 @@
               :key="mr.title"
               @click.stop="takeMeToLink(mr)"
             >
-              <img :src="`images/${mr.img}`" :alt="mr.title" class="h-2/3" />
+              <img :src="`images/${mr.img}`" :alt="mr.title" class="h-3/5" />
               <p class="hover:text-sky-600 md:text-2xl">{{ mr.title }}</p>
             </div>
           </div>
@@ -166,13 +165,23 @@
           </div>
         </div>
 
-        <div class="p-3 m-2x text-xl text-center font-Inter">
-          <h4 class="text-4xl mt-4">Our Software</h4>
+        <div
+          class="
+            p-3
+            m-2
+            flex flex-col
+            items-center
+            justify-center
+            text-xl text-center
+            font-Inter
+          "
+        >
+          <h4 class="text-4xl my-4">Our Software</h4>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://gis.predictiveanalytics.africa"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
@@ -181,10 +190,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://app.abonten.com"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
@@ -193,10 +202,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://ai.predictiveanalytics.africa"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
@@ -205,10 +214,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://app.predictiveanalytics.co.ke"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
@@ -217,10 +226,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://charts.predictiveanalytics.co.ke"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               <span
                 class="text-green-400 hover:border-b-2 hover:border-green-600"
@@ -229,10 +238,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://apps.apple.com/us/app/predictive-analytics/id1584977537"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               Download our
               <span
@@ -242,10 +251,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://play.google.com/store/apps/details?id=com.predictiveanalytics.app&hl=en&gl=US"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               Download Our
               <span
@@ -255,10 +264,10 @@
             </a>
           </div>
 
-          <div class="h-9 m-3 justify-center flex flex-wrap">
+          <div class="h-auto mx-auto">
             <a
               href="https://www.predictiveanalytics.co.ke/blog"
-              class="cursor-pointer text-4xl mt-4"
+              class="cursor-pointer lg:text-4xl xl:text-4xl md:text-4xl"
             >
               Read Our
               <span

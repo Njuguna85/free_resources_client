@@ -29,6 +29,7 @@
             we live and work.
           </p>
         </div>
+
         <div
           class="
             p-3
@@ -80,7 +81,18 @@
           </div>
         </div>
 
-        <div class="p-3 m-2 text-xl text-center font-Inter">
+        <div
+          class="
+            p-3
+            m-2
+            text-xl
+            md:text-3xl
+            lg:text-3xl
+            xl:text-3xl
+            text-center
+            font-Inter
+          "
+        >
           <h4 class="text-4xl mt-4">Marketing</h4>
           <div class="m-3 justify-center flex flex-wrap">
             <div
@@ -272,23 +284,17 @@
           <h4 class="text-4xl mt-4">Get a Scholarship.</h4>
           <p>We would like to offer Scholarships in following areas:</p>
           <div class="m-3 justify-center flex flex-wrap">
-            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
-              <img src="images/excel.svg" class="h-10" alt="" />
-              <h4 class="text-xl font-Poppins p-3">Excel Analysis</h4>
-            </div>
-            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
-              <img src="images/powerbi.svg" class="h-10" alt="" />
-              <h4 class="text-xl font-Poppins p-3">Power BI</h4>
-            </div>
-            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
-              <img src="images/gis.png" class="h-10" alt="" />
-              <h4 class="text-xl font-Poppins p-3">GIS Analysis</h4>
-            </div>
-            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
-              <img src="images/iot.svg" class="h-10" alt="" />
-              <h4 class="text-xl font-Poppins p-3">
-                IOT and Blockchain for Business
-              </h4>
+            <div
+              class="h-15 bg-slate-100 m-2 flex justify-center items-center"
+              v-for="fr in free_courses"
+              :key="fr.title"
+            >
+              <img
+                :src="`/images/${fr.img}`"
+                class="h-10"
+                :alt="`${fr.title}`"
+              />
+              <h4 class="text-xl font-Poppins p-3">{{ fr.title }}</h4>
             </div>
           </div>
 
@@ -326,7 +332,7 @@
             >
               <a href="https://chat.whatsapp.com/JYxec69VS0cEudSVSWDQLD">
                 <img
-                  src="images/whatsapp.svg"
+                  :src="`images/whatsapp.svg`"
                   class="h-9 hover:scale-150 transition-all duration-1000"
                   alt=""
                 />
@@ -441,6 +447,24 @@ export default {
           title: "POPULATION",
           img: "world_pop.svg",
           link: "https://www.worldometers.info/world-population/",
+        },
+      ],
+      free_courses: [
+        {
+          title: "Excel Analysis",
+          img: "excel.svg",
+        },
+        {
+          title: "Power BI",
+          img: "powerbi.svg",
+        },
+        {
+          title: "GIS Analysis",
+          img: "gis.png",
+        },
+        {
+          title: "IOT and Blockchain for Business",
+          img: "iot.svg",
         },
       ],
       continueToUrl: false,

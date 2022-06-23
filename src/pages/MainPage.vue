@@ -154,7 +154,7 @@
           </div>
         </div>
 
-        <div class="p-j3 m-2x text-xl text-center font-Inter">
+        <div class="p-3 m-2x text-xl text-center font-Inter">
           <h4 class="text-4xl mt-4">Our Software</h4>
 
           <div class="h-9 m-3 justify-center flex flex-wrap">
@@ -254,6 +254,98 @@
                 >Blog.</span
               >
             </a>
+          </div>
+        </div>
+
+        <div
+          class="
+            p-2
+            mt-10
+            text-xl text-center
+            font-Inter
+            shadow-lg
+            hover:-translate-y-1 hover:border
+            duration-700
+            border-t border-green-200
+          "
+        >
+          <h4 class="text-4xl mt-4">Get a Scholarship.</h4>
+          <p>We would like to offer Scholarships in following areas:</p>
+          <div class="m-3 justify-center flex flex-wrap">
+            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
+              <img src="images/excel.svg" class="h-10" alt="" />
+              <h4 class="text-xl font-Poppins p-3">Excel Analysis</h4>
+            </div>
+            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
+              <img src="images/powerbi.svg" class="h-10" alt="" />
+              <h4 class="text-xl font-Poppins p-3">Power BI</h4>
+            </div>
+            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
+              <img src="images/gis.png" class="h-10" alt="" />
+              <h4 class="text-xl font-Poppins p-3">GIS Analysis</h4>
+            </div>
+            <div class="h-15 bg-slate-100 m-2 flex justify-center items-center">
+              <img src="images/iot.svg" class="h-10" alt="" />
+              <h4 class="text-xl font-Poppins p-3">
+                IOT and Blockchain for Business
+              </h4>
+            </div>
+          </div>
+
+          <p class="text-center">
+            The Tuition is 100% free but there is a small fee of
+            <span
+              class="text-green-600 hover:border-b-2 hover:border-green-600"
+            >
+              Ksh 9,500
+            </span>
+            or
+            <span class="text-green-600 hover:border-b-2 hover:border-green-600"
+              >$100 </span
+            >for registration, exam certification and Work Project
+            Implementation Coaching.
+          </p>
+
+          <p>
+            If interested join the WhatsApp group and we will match you with the
+            next cohort in line to start a course.
+          </p>
+          <p>Remember to indicate with course you select.</p>
+
+          <div class="mx-auto flex justify-center">
+            <div
+              class="
+                h-15
+                w-52
+                m-2
+                flex
+                justify-center
+                items-center
+                bg-slate-100
+              "
+            >
+              <a href="https://chat.whatsapp.com/JYxec69VS0cEudSVSWDQLD">
+                <img
+                  src="images/whatsapp.svg"
+                  class="h-9 hover:scale-150 transition-all duration-1000"
+                  alt=""
+                />
+              </a>
+              <a href="https://chat.whatsapp.com/JYxec69VS0cEudSVSWDQLD">
+                <button
+                  class="
+                    text-xl
+                    font-Poppins
+                    p-3
+                    hover:scale-110
+                    transition-all
+                    duration-1000
+                  "
+                >
+                  Click to join.
+                </button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
